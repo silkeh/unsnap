@@ -108,6 +108,11 @@ sudo apt install -y flatpak
 # sudo apt install gnome-software-plugin-flatpak
 EOT
             ;;
+        solus)
+            cat <<EOT >> "$INSTALLFLATPACKSCRIPT"
+sudo eopkg install flatpak
+EOT
+            ;;
         *)
             echo "ERROR: Unable to generate flatpak install script. Unimplemented distro." | tee -a "$LOGFILE"
             exit 5
@@ -190,6 +195,9 @@ function generate_remove_snapd_script() {
         debian|ubuntu|linuxmint|pop|elementary|zorin)
             echo "sudo apt remove snapd" >> "$REMOVESNAPDSCRIPT"
             ;;
+        solus)
+            echo "sudo eopkg remove snapd" >> "$REMOVESNAPDSCRIPT"
+            ;;
         *)
             echo "ERROR: Unable to generate snapd removal script. Unimplemented distro." | tee -a "$LOGFILE"
     esac
@@ -247,7 +255,7 @@ function determine_distro() {
     # TODO: Add more distros
     source /etc/os-release
     case "$ID" in
-        debian|ubuntu|linuxmint|pop|elementary|zorin)
+        debian|ubuntu|linuxmint|pop|elementary|zorin|solus)
             DISTRO="$ID"
             ;;
         *)
