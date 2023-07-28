@@ -245,10 +245,10 @@ function determine_distro() {
     # Figure out what distro we're running on so we can use appropriate commands
     # later for installing / removing snapd and installing flatpak
     # TODO: Add more distros
-    CANDIDATE=$(grep -w ID /etc/os-release | awk -F "=" '{ print $2} ')
-    case $CANDIDATE in
+    source /etc/os-release
+    case "$ID" in
         debian|ubuntu|linuxmint|pop|elementary|zorin)
-            DISTRO="$CANDIDATE"
+            DISTRO="$ID"
             ;;
         *)
             echo "ERROR: Running on unknown distro, '$CANDIDATE' aborting" | tee -a "$LOGFILE"
