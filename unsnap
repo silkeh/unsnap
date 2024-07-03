@@ -25,7 +25,7 @@ function display_warnings() {
 
 function setup_environment() {
     DATETIMESTAMP=$(date +%Y-%m-%d.%H.%M.%S)
-    LOGDIR="./log-$DATETIMESTAMP"
+    LOGDIR="/var/log/unsnap/$DATETIMESTAMP"
     LOGFILE="$LOGDIR/unsnap.log"
     INSTALLEDSNAPLIST="$LOGDIR/allsnaps.txt"
     FILTEREDSNAPLIST="$LOGDIR/filteredsnaps.txt"
@@ -45,7 +45,7 @@ function setup_environment() {
 }
 
 function create_logdir() {
-    mkdir "$LOGDIR"
+    mkdir -p "$LOGDIR"
 }
 
 function audit_snap() {
