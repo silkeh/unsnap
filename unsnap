@@ -13,6 +13,8 @@ CYAN='\033[0;36m'
 WHITE='\033[0;37m'
 NC='\033[0m' # No Color
 
+# Add unwrapped snap to PATH.
+export PATH="/usr/lib64/snapd:${PATH}"
 
 function display_warnings() {
     echo -e "${YELLOW}WARNING:${NC} Care has been taken to ensure this script is safe."
