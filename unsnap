@@ -413,6 +413,11 @@ if [ "$1" == "check" ]; then
     echo -e "${GREEN}INFO:${NC} Check requested" | tee -a "$LOGFILE"
     check_applist
 else
+    if [ $# -eq 0 ]; then
+        echo -e "${GREEN}INFO:${NC} running \`unsnap\` without arguments generates removal scripts in $LOGDIR"
+        echo -e "Run \`unsnap auto\` to automatically execute those scripts afterwards."
+        echo -e "See https://help.getsol.us/docs/user/software/third-party/snap for more information.\n"
+    fi
     display_warnings
     create_logdir
 fi
